@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MyCoolApp-APK
-          path: ${{ github.workspace }}/app/platforms/android/app/build/outputs/apk/**/*.apk
+          path: /home/runner/work/MyCoolApp/MyCoolApp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
