@@ -1,30 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# You can override these from the workflow env or before running:
-APP_ID="${APP_ID:-com.example.mycoolapp}"
+APP_ID="${APP_ID:-com.boss.coolapp}"
 APP_NAME="${APP_NAME:-MyCoolApp}"
 
-WORKDIR="$(pwd)"
+WORKDIR="${GITHUB_WORKSPACE:-$(pwd)}"
 BUILD_DIR="$WORKDIR/app"
 
 echo "==> Using APP_ID=$APP_ID  APP_NAME=$APP_NAME"
 rm -rf "$BUILD_DIR"
 
-# Create fresh Cordova app each build
+# 1️⃣ Create fresh Cordova app
 npx cordova telemetry off || true
 npx cordova create "$BUILD_DIR" "$APP_ID" "$APP_NAME"
 
 cd "$BUILD_DIR"
 npx cordova platform add android
 
-# Copy your code into the app's web assets
-rm -rf www/*
+# 2️⃣ Copy frontend/backend files into www/
 mkdir -p www
-cp -r "$WORKDIR/../frontend/"* www/ 2>/dev/null || true
-cp -r "$WORKDIR/../backend/"*  www/ 2>/dev/null || true
+cp -r "$WORKDIR/frontend/"* www/ 2>/dev/null || true
+cp -r "$WORKDIR/backend/"*  www/ 2>/dev/null || true
 
-# Build DEBUG (easier to install). Change to --release if you want unsigned release.
-npx cordova build android
+# 3️⃣ Force correct config.xml content src
+sed -i 's|<content src=".*" />|<content src="index.html" />|' config.xml
 
-echo "==> APKs at: app/platforms/android/app/build/outputs/apk/"
+# 4️⃣ Build APK (debug + release)
+npx cordova build android --debug
+
+echo "==> Build finished. APKs are in:"
+find platforms/android/app/build/outputs/apk/ -type f -name "*.apk"
