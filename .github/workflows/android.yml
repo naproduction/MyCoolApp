@@ -42,12 +42,6 @@ jobs:
       - name: Build APK
         run: bash tools/build.sh
 
-      # 7️⃣ Show where APKs are
-      - name: List APK files
-        run: |
-          echo "Looking for APKs..."
-          find ${{ github.workspace }}/app/platforms/android/app/build/outputs/apk/ -type f -name "*.apk"
-
       # 8️⃣ Upload all APKs found
       - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
