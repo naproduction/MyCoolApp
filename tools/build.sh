@@ -28,5 +28,3 @@ sed -i 's|<content src=".*" />|<content src="index.html" />|' config.xml
 # 4️⃣ Build APK (debug + release)
 npx cordova build android --debug
 
-echo "==> Build finished. APKs are in:"
-find platforms/android/app/build/outputs/apk/ -type f -name "*.apk"
