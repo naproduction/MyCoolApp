@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="__APP_ID__" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>__APP_NAME__</name>
+  <description>MyCoolApp — Termux → GitHub → APK starter</description>
+  <author email="dev@cordova.apache.org" href="https://cordova.apache.org">Apache Cordova Team</author>
+
+  <!-- Load app from local file -->
+  <content src="index.html" />
+
+  <!-- Allow common intents -->
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+
+  <!-- Basic preferences -->
+  <preference name="DisallowOverscroll" value="true" />
+  <preference name="android-minSdkVersion" value="21" />
+  <preference name="BackupWebStorage" value="none" />
+  <preference name="SplashScreenDelay" value="3000" />
+
+  <!-- Icon & splash entries (will be copied into project at build time) -->
+  <platform name="android">
+    <!-- single icon fallback -->
+    <icon src="res/icon.png" density="mdpi" />
+    <icon src="res/icon.png" density="hdpi" />
+    <icon src="res/icon.png" density="xhdpi" />
+    <icon src="res/icon.png" density="xxhdpi" />
+    <icon src="res/icon.png" density="xxxhdpi" />
+
+    <!-- splash fallback -->
+    <splash src="res/splash.png" density="port-mdpi" />
+    <splash src="res/splash.png" density="port-hdpi" />
+    <splash src="res/splash.png" density="port-xhdpi" />
+    <splash src="res/splash.png" density="port-xxhdpi" />
+    <splash src="res/splash.png" density="port-xxxhdpi" />
+
+    <!-- status bar / theme -->
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+  </platform>
+
+  <!-- allow access to local files & navigation -->
+  <allow-navigation href="*" />
+  <access origin="*" />
+</widget>
